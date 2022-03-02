@@ -26,17 +26,17 @@ public class Assignment2Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		User user1 = new User();
-		user1.setEmail("07ayush0707@gmail.com");
-		user1.setUsername("Ayush");
-		user1.setPassword(bCryptPasswordEncoder.encode("Ayush@123"));
+		user1.setEmail("riasingh@gmail.com");
+		user1.setUsername("Ria");
+		user1.setPassword(bCryptPasswordEncoder.encode("Singh"));
 		user1.setRole("ROLE_ADMIN");
 
 		userRepo.save(user1);
 
 		User user2 = new User();
-		user2.setEmail("RitikDixit@gmail.com");
-		user2.setUsername("Ritik Dixit");
-		user2.setPassword(bCryptPasswordEncoder.encode("Ritik@123"));
+		user2.setEmail("nikitasingh@gmail.com");
+		user2.setUsername("Nikita Singh");
+		user2.setPassword(bCryptPasswordEncoder.encode("Rajput"));
 		user2.setRole("ROLE_NORMAL");
 
 		userRepo.save(user2);
