@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1</title>
+</head>
+
+<body>
+    <script>
+        class Rectangle {
+            constructor(width, height) {
+                this.width = width;
+                this.height = height;
+            }
+
+        }
+        //new instances
+        var rec1 = new Rectangle(4, 5);
+        var rec2 = new Rectangle(4, 5);
+        //properties
+        rec1.height = 4;
+        rec1.width = 5;
+        rec1.colour = 'red';
+        console.log(rec1);
+
+        rec2.height = 40;
+        rec2.width = 50;
+        rec2.colour = 'blue';
+        console.log(rec2);
+
+        //modify properties
+        rec1.height = 14;
+        rec1.width = 20;
+        rec1.colour = 'green'
+        console.log(rec1);
+        document.write(rec1);
+    </script>
+</body>
+
+</html>
