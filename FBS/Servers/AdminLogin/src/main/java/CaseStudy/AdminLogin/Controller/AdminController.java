@@ -1,0 +1,143 @@
+package CaseStudy.AdminLogin.Controller;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import CaseStudy.AdminLogin.Model.Flight;
+import CaseStudy.AdminLogin.Model.JwtRequest;
+import CaseStudy.AdminLogin.Repository.FlightRepository;
+import CaseStudy.AdminLogin.Utility.JWTUtility;
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/admin")
+public class AdminController {
+
+	@Autowired
+	private FlightRepository flightRepository;
+	
+	
+	@Autowired
+	private JWTUtility jwtUtility;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@GetMapping("/")
+	public String home() {
+		return "Welocome Admin";
+	}
+	@PostMapping("/authenticate")
+	public String authenticate(@RequestBody JwtRequest jwtRequest ) throws Exception {
+		try {
+			authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(
+							jwtRequest.getUsername(),
+							jwtRequest.getPassword()
+							)
+					);
+		} catch (BadCredentialsException e) {
+			throw new Exception("Invalid Credentials",e);
+		}
+		
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+		final String token = jwtUtility.generateToken(userDetails);
+		return token;
+	}
+	
+	@GetMapping("/find/{origin}/{destination}/{departureDate}")
+	public List<Flight> getFlights(@PathVariable String origin,@PathVariable String destination,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate departureDate)
+	{
+		LocalDateTime date = LocalDateTime.now();
+
+		List<Flight> allflights = flightRepository.findByDetails(origin,destination,departureDate);
+		return allflights.stream().filter(Flight -> Flight.getDepartureDateAndTime().isAfter(date))
+		.collect(Collectors.toList());
+		
+	}
+	
+	@GetMapping("/findallflights")
+	public List<Flight> getAllFlights(){
+		return flightRepository.findAll();
+	}
+	
+	@PostMapping("/addFlight")
+	public String saveFlight(@RequestBody Flight flight) {
+		LocalDateTime current = LocalDateTime.now();
+		if(flight.getDepartureDateAndTime().isAfter(current) && flight.getArrivalDateAndTime().isAfter(
+				flight.getDepartureDateAndTime()) && flight.getOrigin().equalsIgnoreCase(flight.getDestination())==false ) {
+		flight.setDepartureDate(flight.getDepartureDateAndTime().toLocalDate());
+		flightRepository.save(flight);
+		return "Added Flight : "+flight.getFlightNo()+" From "+flight.getOrigin()+" To "+flight.getDestination();}
+		else { return "Invalid  Data Inputs, Flight Not Added"; }
+	}
+	
+	@GetMapping("/findflightbyid/{_id}")
+	public Optional<Flight> getflightbyid(@PathVariable String _id){
+		Optional<Flight> flightbyid = flightRepository.findById(_id);
+		return flightbyid;
+		
+	}
+	@DeleteMapping("/deleteFlight/{_id}")
+	public String deletebyid(@PathVariable String _id) {
+		Optional<Flight> flightdata = flightRepository.findById(_id);
+		if(flightdata.isPresent()) {
+			flightRepository.deleteById(_id);
+			return "Deleted Flight With Id:"+_id;
+		}
+		return "Flight Not Found";
+		
+	}
+	
+	@PutMapping("/editFlight/{_id}")
+	public String editFlight(@PathVariable String _id, @RequestBody Flight flight){
+		Optional<Flight> flightdata = flightRepository.findById(_id);
+		if(flightdata.isPresent()) {
+			Flight flightbyid = flightdata.get();
+			LocalDateTime current = LocalDateTime.now();
+			
+				
+				if (flight.getTicketPrice() != 0.0) {
+					flightbyid.setTicketPrice(flight.getTicketPrice());
+				}
+				if (flight.getDepartureDateAndTime() != null) {
+					if(flight.getDepartureDateAndTime().isAfter(current)){
+					flightbyid.setDepartureDateAndTime(flight.getDepartureDateAndTime());
+					flightbyid.setDepartureDate(flight.getDepartureDateAndTime().toLocalDate()); }
+					else { return "Departure Date can not be before Current date"; }
+				}
+				if (flight.getArrivalDateAndTime() != null) {
+					if(flight.getArrivalDateAndTime().isAfter(
+					flight.getDepartureDateAndTime())) {
+					flightbyid.setArrivalDateAndTime(flight.getArrivalDateAndTime());}
+					else { return "Arrival Date can not be before Departure"; }
+				}
+				
+				
+				flightRepository.save(flightbyid);
+			
+				return  "Flight Updated Succeffully ";}
+		return null;		
+	}
+}
