@@ -1,0 +1,49 @@
+2022-05-19 22:49:56,025 INFO  StartupInfoLogger:55 - [] Starting BookingDetailsApplication using Java 17.0.2 on DESKTOP-KLBFNK5 with PID 11972 (C:\Users\91860\Documents\Flight Booking System\server\booking-details\target\classes started by 91860 in C:\Users\91860\Documents\Flight Booking System\server\booking-details)
+2022-05-19 22:49:56,046 INFO  SpringApplication:640 - [] No active profile set, falling back to 1 default profile: "default"
+2022-05-19 22:49:56,292 INFO  DeferredLog:255 - [] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-19 22:49:56,293 INFO  DeferredLog:255 - [] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-19 22:49:58,590 INFO  RepositoryConfigurationDelegate:132 - [] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-19 22:49:58,839 INFO  RepositoryConfigurationDelegate:201 - [] Finished Spring Data repository scanning in 240 ms. Found 1 MongoDB repository interfaces.
+2022-05-19 22:49:59,447 INFO  GenericScope:283 - [] BeanFactory id=91b15b7e-0e1d-3d01-b315-6bc2e3e10c8c
+2022-05-19 22:50:02,880 INFO  TomcatWebServer:108 - [] Tomcat initialized with port(s): 8000 (http)
+2022-05-19 22:50:02,984 INFO  DirectJDKLog:173 - [] Starting service [Tomcat]
+2022-05-19 22:50:02,985 INFO  DirectJDKLog:173 - [] Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-05-19 22:50:03,509 INFO  DirectJDKLog:173 - [] Initializing Spring embedded WebApplicationContext
+2022-05-19 22:50:03,510 INFO  ServletWebServerApplicationContext:290 - [] Root WebApplicationContext: initialization completed in 7022 ms
+2022-05-19 22:50:03,835 INFO  SLF4JLogger:71 - [] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-19 22:50:04,022 WARN  CustomConversions:261 - [] Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-05-19 22:50:04,069 WARN  CustomConversions:261 - [] Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-05-19 22:50:04,288 WARN  OptionalLiveReloadServer:61 - [] Unable to start LiveReload server
+2022-05-19 22:50:04,365 INFO  SLF4JLogger:71 - [] Opened connection [connectionId{localValue:2, serverValue:6}] to localhost:27017
+2022-05-19 22:50:04,947 INFO  SLF4JLogger:71 - [] Opened connection [connectionId{localValue:1, serverValue:5}] to localhost:27017
+2022-05-19 22:50:04,948 INFO  SLF4JLogger:71 - [] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=1037929000}
+2022-05-19 22:50:06,687 INFO  DiscoveryClientOptionalArgsConfiguration:68 - [] Eureka HTTP Client uses RestTemplate.
+2022-05-19 22:50:06,969 WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger:82 - [] Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2022-05-19 22:50:07,083 INFO  InstanceInfoFactory:67 - [] Setting initial instance status as: STARTING
+2022-05-19 22:50:07,239 INFO  DiscoveryClient:372 - [] Initializing Eureka in region us-east-1
+2022-05-19 22:50:07,277 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
+2022-05-19 22:50:07,331 INFO  DiscoveryClient:1007 - [] Disable delta property : false
+2022-05-19 22:50:07,332 INFO  DiscoveryClient:1008 - [] Single vip registry refresh property : null
+2022-05-19 22:50:07,333 INFO  DiscoveryClient:1009 - [] Force full registry fetch : false
+2022-05-19 22:50:07,333 INFO  DiscoveryClient:1010 - [] Application is null : false
+2022-05-19 22:50:07,333 INFO  DiscoveryClient:1011 - [] Registered Applications size is zero : true
+2022-05-19 22:50:07,334 INFO  DiscoveryClient:1013 - [] Application version is -1: true
+2022-05-19 22:50:07,335 INFO  DiscoveryClient:1097 - [] Getting all instance registry info from the eureka server
+2022-05-19 22:50:08,026 INFO  DiscoveryClient:1106 - [] The response status is 200
+2022-05-19 22:50:08,037 INFO  DiscoveryClient:1321 - [] Starting heartbeat executor: renew interval is: 30
+2022-05-19 22:50:08,048 INFO  InstanceInfoReplicator:60 - [] InstanceInfoReplicator onDemand update allowed rate per min is 4
+2022-05-19 22:50:08,068 INFO  DiscoveryClient:492 - [] Discovery Client initialized at timestamp 1652980808066 with initial instances count: 2
+2022-05-19 22:50:08,070 INFO  EurekaServiceRegistry:41 - [] Registering application BOOKING-DETAILS with eureka with status UP
+2022-05-19 22:50:08,071 INFO  DiscoveryClient$3:1352 - [] Saw local status change event StatusChangeEvent [timestamp=1652980808071, current=UP, previous=STARTING]
+2022-05-19 22:50:08,074 INFO  DiscoveryClient:873 - [] DiscoveryClient_BOOKING-DETAILS/DESKTOP-KLBFNK5:booking-details:8000: registering service...
+2022-05-19 22:50:08,553 INFO  TomcatWebServer:220 - [] Tomcat started on port(s): 8000 (http) with context path ''
+2022-05-19 22:50:08,559 INFO  EurekaAutoServiceRegistration:144 - [] Updating port to 8000
+2022-05-19 22:50:08,581 INFO  DiscoveryClient:882 - [] DiscoveryClient_BOOKING-DETAILS/DESKTOP-KLBFNK5:booking-details:8000 - registration status: 204
+2022-05-19 22:50:08,823 INFO  StartupInfoLogger:61 - [] Started BookingDetailsApplication in 14.857 seconds (JVM running for 19.772)
+2022-05-19 22:55:07,349 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
+2022-05-19 23:00:07,390 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
+2022-05-19 23:05:07,629 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
+2022-05-19 23:10:07,642 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
+2022-05-19 23:15:07,722 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
+2022-05-19 23:20:07,726 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
+2022-05-19 23:25:07,742 INFO  ConfigClusterResolver:43 - [] Resolving eureka endpoints via configuration
